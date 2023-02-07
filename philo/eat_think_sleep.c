@@ -17,7 +17,10 @@ void	eating(t_philo *philo)
 	print_msg(philo, "is eating");
 	usleep(philo->prog->timetoeat * 1000);
 	philo->lastmeal = get_time();
-	philo->ate++;
+	// printf("%d\n", philo->ate);
+	philo->ate++;///to check after
+	// printf("%d\n", philo->ate);
+	// while (1);
 	if (philo->ate == philo->prog->numberofeat)
 		philo->prog->all_ate++;
 }

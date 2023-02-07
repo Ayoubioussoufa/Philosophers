@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 11:58:42 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/07 09:24:21 by aybiouss         ###   ########.fr       */
+/*   Created: 2023/02/07 09:54:45 by aybiouss          #+#    #+#             */
+/*   Updated: 2023/02/07 10:50:12 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 t_prog	*prog_init(t_prog *prog, char **av, int ac)
 {
@@ -25,8 +25,7 @@ t_prog	*prog_init(t_prog *prog, char **av, int ac)
 	else
 		prog->numberofeat = -1;
 	prog->philo = malloc(sizeof(t_philo) * prog->numberofphilos);
-	prog->forks = malloc(sizeof(pthread_mutex_t) * prog->numberofphilos);
-	if (!prog->philo || !prog->forks)
+	if (!prog->philo)
 		return (NULL);
 	return (prog);
 }

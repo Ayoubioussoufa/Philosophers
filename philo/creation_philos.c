@@ -12,15 +12,6 @@
 
 #include "philo.h"
 
-void	print_msg(t_philo *philo, char *msg)
-{
-	pthread_mutex_lock(&philo->prog->finish_lock);
-	if (!philo->prog->finish)
-		printf("%lli ms | Philo %i %s\n", current_time(philo), philo->id + 1, msg);
-	pthread_mutex_unlock(&philo->prog->finish_lock);
-}
-
-
 void	*check_hunger(void *arg)
 {
 	t_prog	*prog;
@@ -55,8 +46,8 @@ void	*check_death(void *arg)
 void	*philosophers(void *arg)
 {
 	t_philo	*philo;
-	int	left_fork;
-	int	right_fork;
+	int		left_fork;
+	int		right_fork;
 
 	philo = (t_philo *)arg;
 	while (!philo->should_die && !philo->prog->finish)
@@ -77,11 +68,11 @@ void	*philosophers(void *arg)
 	return (NULL);
 }
 
-int creation_philos(t_prog *prog)
+int	creation_philos(t_prog *prog)
 {
-	int	i;
+	int			i;
 	pthread_t	monitor;
-    
+
 	i = 0;
 	prog->creation_time = get_time();
 	while (i < prog->numberofphilos)
@@ -91,7 +82,8 @@ int creation_philos(t_prog *prog)
 		prog->philo[i].lastmeal = prog->creation_time;
 		prog->philo[i].should_die = 0;
 		prog->philo[i].ate = 0;
-		pthread_create(&prog->philo[i].thread, NULL, philosophers, &prog->philo[i]);
+		pthread_create(&prog->philo[i].thread, NULL,
+			philosophers, &prog->philo[i]);
 		pthread_create(&monitor, NULL, check_death, &prog->philo[i]);
 		pthread_detach(monitor);
 		i++;
@@ -102,5 +94,5 @@ int creation_philos(t_prog *prog)
 		pthread_create(&monitor, NULL, check_hunger, prog);
 		pthread_detach(monitor);
 	}
-	return 0;
+	return (0);
 }

@@ -22,7 +22,6 @@
 typedef struct timeval	t_time;
 typedef struct s_prog	t_prog;
 
-
 typedef struct s_philo
 {
 	int			id;
@@ -49,36 +48,38 @@ typedef struct s_prog
 }	t_prog;
 
 //utils
-void	ft_putstr_fd(char *str, int fd);
-void	ft_putchar_fd(char c, int fd);
+void		ft_putstr_fd(char *str, int fd);
+void		ft_putchar_fd(char c, int fd);
 
 //prog init
-t_prog   *prog_init(t_prog *prog, char **av, int ac);
+t_prog		*prog_init(t_prog *prog, char **av, int ac);
 
 //threads creation
-int creation_philos(t_prog *prog);
+int			creation_philos(t_prog *prog);
 
 //mutex init and destroy
-int	mutex_init(t_prog *prog);
-int	mutex_destroy(t_prog *prog);
+int			mutex_init(t_prog *prog);
+int			mutex_destroy(t_prog *prog);
 
 //get time
 long long	get_time(void);
+long long	current_time(t_philo *philo);
 
 //forks
-void	grab_fork(t_philo *philo, int f);
-void	put_forks(t_philo *philo, int f1, int f2);
+void		grab_fork(t_philo *philo, int f);
+void		put_forks(t_philo *philo, int f1, int f2);
 
 //eat sleep think
-void	eating(t_philo *philo);
-void	sleep_think(t_philo *philo);
+void		eating(t_philo *philo);
+void		sleep_think(t_philo *philo);
 
 //checks
-void	*philosophers(void *arg);   
-void	*check_hunger(void *arg);
-void	*check_death(void *arg);
-void    join_free(t_prog *prog);
-void	print_msg(t_philo *philo, char *msg);
-long long	current_time(t_philo *philo);
+void		*philosophers(void *arg);
+void		*check_hunger(void *arg);
+void		*check_death(void *arg);
+void		join_free(t_prog *prog);
+
+//msg
+void		print_msg(t_philo *philo, char *msg);
 
 #endif

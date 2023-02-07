@@ -12,20 +12,10 @@
 
 #include "philo.h"
 
-void	join_free(t_prog *prog)
+void	free_prog(t_prog *prog)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (i < prog->numberofphilos)
-    {
-        if (pthread_join(prog->philo[i++].thread, NULL) != 0)
-		{
-			ft_putstr_fd("Error Couldn't join thread", 2);
-			return ;
-		}
-	}
-	free(prog->philo);
 	i = 0;
 	if (pthread_mutex_destroy(&prog->finish_lock) != 0)
 	{
@@ -42,4 +32,21 @@ void	join_free(t_prog *prog)
 	}
 	free(prog->forks);
 	free(prog);
+}
+
+void	join_free(t_prog *prog)
+{
+	int	i;
+
+	i = 0;
+	while (i < prog->numberofphilos)
+	{
+		if (pthread_join(prog->philo[i++].thread, NULL) != 0)
+		{
+			ft_putstr_fd("Error Couldn't join thread", 2);
+			return ;
+		}
+	}
+	free(prog->philo);
+	free_prog(prog);
 }

@@ -15,9 +15,9 @@
 int	mutex_init(t_prog *prog)
 {
 	int	i;
-	
+
 	i = 0;
-    if (pthread_mutex_init(&prog->finish_lock, NULL) != 0)
+	if (pthread_mutex_init(&prog->finish_lock, NULL) != 0)
 	{
 		ft_putstr_fd("Mutex init failed\n", 2);
 		return (1);
