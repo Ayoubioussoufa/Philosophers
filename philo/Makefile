@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 SRCS = philo.c mutex_init.c creation_philos.c eat_think_sleep.c forks.c  get_time.c prog_init.c  join_free.c print_msg.c
 OBJS = $(SRCS:.c=.o)
 

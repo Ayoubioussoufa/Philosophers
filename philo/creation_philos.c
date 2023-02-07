@@ -56,7 +56,7 @@ void	*philosophers(void *arg)
 		left_fork = (philo->id + 1) % philo->prog->numberofphilos;
 		if (philo->prog->numberofphilos == 1)
 		{
-			usleep(1000000);
+			// usleep(100000);
 			break ;
 		}
 		grab_fork(philo, right_fork);

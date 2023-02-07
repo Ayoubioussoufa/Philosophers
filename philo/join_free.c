@@ -43,7 +43,7 @@ void	join_free(t_prog *prog)
 	{
 		if (pthread_join(prog->philo[i++].thread, NULL) != 0)
 		{
-			ft_putstr_fd("Error Couldn't join thread", 2);
+			ft_putstr_fd("Error Couldn't join thread\n", 2);
 			return ;
 		}
 	}
