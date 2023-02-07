@@ -54,12 +54,12 @@ void	*philosophers(void *arg)
 	{
 		right_fork = philo->id;
 		left_fork = (philo->id + 1) % philo->prog->numberofphilos;
-		grab_fork(philo, right_fork);
 		if (philo->prog->numberofphilos == 1)
 		{
 			usleep(1000000);
 			break ;
 		}
+		grab_fork(philo, right_fork);
 		grab_fork(philo, left_fork);
 		eating(philo);
 		put_forks(philo, right_fork, left_fork);

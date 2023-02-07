@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 09:54:37 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/07 10:56:56 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/07 13:41:34 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int main(int ac, char **av)
 		return (1);
 	}
 	prog = malloc(sizeof(t_prog));
-    prog_init(prog, av, ac);
-    
+	prog_init(prog, av, ac);
+	
 }
