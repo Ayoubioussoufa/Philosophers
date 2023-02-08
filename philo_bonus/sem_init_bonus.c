@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.c                                      :+:      :+:    :+:   */
+/*   sem_init_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/07 09:54:37 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 13:51:22 by aybiouss         ###   ########.fr       */
+/*   Created: 2023/02/08 13:37:22 by aybiouss          #+#    #+#             */
+/*   Updated: 2023/02/08 14:11:34 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int main(int ac, char **av)
+void	ft_sem_init(t_prog *prog)
 {
-    t_prog	*prog;
-
-	if (ac != 6 && ac != 5)
-	{
-		printf("Usage: ./philo <number_of_philos> <time_to_die> "
-			"<time_to_eat> <time_to_sleep> "
-			"[number_of_times_eacih_philosopher_must_eat]\n");
-		return (1);
-	}
-	prog = malloc(sizeof(t_prog));
-	prog_init(prog, av, ac);
-	ft_sem_init(prog);
-	creation_philos(prog);
+	prog->sem = malloc(sizeof(sem_t));
+	prog->sem = sem_open(/**/, O_CREAT | O_EXCL, 0644);
+	if (prog->sem) //SEM_FAILED = 1
+		return ;//error function !!
 }
