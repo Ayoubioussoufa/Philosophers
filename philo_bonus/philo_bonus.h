@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 09:55:10 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 13:52:49 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:56:31 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ long long	current_time(t_philo *philo);
 int		creation_philos(t_prog *prog);
 void	philosopher(t_philo *philo);
 
-
+//print msg
+void    ft_print_msg(t_philo *philo, char *msg);
 
 #endif

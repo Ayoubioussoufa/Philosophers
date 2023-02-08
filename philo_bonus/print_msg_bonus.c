@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sem_init_bonus.c                                   :+:      :+:    :+:   */
+/*   print_msg_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 13:37:22 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 15:47:49 by aybiouss         ###   ########.fr       */
+/*   Created: 2023/02/08 15:53:20 by aybiouss          #+#    #+#             */
+/*   Updated: 2023/02/08 15:53:58 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	ft_sem_init(t_prog *prog)
+void    ft_print_msg(t_philo *philo, char *msg)
 {
-	prog->sem = malloc(sizeof(sem_t));
-	prog->sem = sem_open("semaphore", O_CREAT | O_EXCL, 0644, prog->numberofphilos);
-	if (prog->sem) //SEM_FAILED = 1
-		return ;//error function !!
+    if (!philo->prog->finish)
+		printf("%lli ms| Philo %i %s\n", current_time(philo),
+			philo->id + 1, msg);
 }
