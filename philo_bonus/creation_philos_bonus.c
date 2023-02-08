@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 10:58:10 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 14:33:27 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/08 16:18:20 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	creation_philos(t_prog *prog)
 			init_philo(prog, i);
 			philosopher(prog->philo);
 			// pthread_create(&monitor, NULL, /*check_death*/, &prog->philo[i]);
-			// pthread_detach(monitor);
+			// pthread_detach(monitor); 
 		}
 		else
 		{

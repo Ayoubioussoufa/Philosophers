@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 13:37:22 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 15:47:49 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:00:19 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_sem_init(t_prog *prog)
 {
-	prog->sem = malloc(sizeof(sem_t));
 	prog->sem = sem_open("semaphore", O_CREAT | O_EXCL, 0644, prog->numberofphilos);
 	if (prog->sem) //SEM_FAILED = 1
 		return ;//error function !!
