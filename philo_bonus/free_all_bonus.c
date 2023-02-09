@@ -12,7 +12,7 @@
 
 #include "philo_bonus.h"
 
-void	ft_free_all(t_prog *prog)
+void	free_all(t_prog *prog)
 {
 	int	ret;
 	int	i;
@@ -29,7 +29,8 @@ void	ft_free_all(t_prog *prog)
 			break ;
 		}
 	}
-	sem_close(prog->forks);
+	free(prog->philo);
+	sem_close(prog->fork);
 	free(prog->id_table);
 	free(prog);
 }

@@ -6,11 +6,12 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:53:20 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/09 10:04:46 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/09 13:03:30 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+#include <string.h>
 
 void    print_msg(t_philo *philo, char *msg)
 {

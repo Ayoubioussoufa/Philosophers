@@ -15,6 +15,6 @@
 void	sleep_think(t_philo *philo)
 {
 	print_msg(philo, "is sleeping");
-	usleep(philo->info->time_to_sleep * 1000);
+	usleep(philo->prog->timetosleep * 1000);
 	print_msg(philo, "is thinking");
 }

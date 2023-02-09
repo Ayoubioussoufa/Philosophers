@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 09:54:45 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/09 10:34:03 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/09 12:46:47 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	prog_init(t_prog *prog, char **av, int ac)
 {
 	prog->numberofphilos = atoi(av[1]);
+	// printf("%d\n", prog->numberofphilos);
 	prog->timetodie = atoi(av[2]);
 	prog->timetoeat = atoi(av[3]);
 	prog->timetosleep = atoi(av[4]);
@@ -24,8 +25,7 @@ void	prog_init(t_prog *prog, char **av, int ac)
 		prog->numberofeat = atoi(av[5]);
 	else
 		prog->numberofeat = -1;
-	prog->philo = malloc(sizeof(t_philo) * prog->numberofphilos);
 	prog->id_table = malloc(sizeof(int) * prog->numberofphilos);
-	if (!prog->philo || !prog->id_table)
-		ft_puterr("Allocation Error!\n");
+	if (!prog->id_table)
+		puterr("Allocation Error!\n");
 }

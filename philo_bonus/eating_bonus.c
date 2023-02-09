@@ -12,7 +12,7 @@
 
 #include "philo_bonus.h"
 
-void	ft_eating(t_philo *philo)
+void	eating(t_philo *philo)
 {
 	philo->lastmeal = get_time();
 	print_msg(philo, "is eating");
