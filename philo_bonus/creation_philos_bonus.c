@@ -6,14 +6,34 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 10:58:10 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 16:18:20 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:40:48 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	*philosopher(t_philo *philo)
+void	*check_death(void *arg)
 {
+	t_philo	*philo;
+
+	philo = arg;
+	while (1)
+	{
+		if ((philo->last_meal + philo->prog->time_to_die) < ft_get_time())
+		{
+			print_msg(philo, "died");
+			exit (FT_FAILURE);
+		}
+		usleep(1000);
+	}
+	return (NULL);
+}
+
+void	philosopher(t_philo *philo)
+{
+	pthread_t	monitor;
+
+	pthread_create(&monitor, NULL, check_death, philo);
 	while (!philo->should_die && !philo->prog->finish)
 	{
 		if (philo->prog->numberofphilos == 1)
@@ -24,7 +44,7 @@ void	*philosopher(t_philo *philo)
 		put_forks(philo);
 		sleep_think(philo);
 	}
-	return (NULL);
+	pthread_join(monitor, NULL);
 }
 
 void	init_philo(t_prog *prog, int i)
@@ -39,7 +59,6 @@ void	init_philo(t_prog *prog, int i)
 int	creation_philos(t_prog *prog)
 {
 	int			i;
-	pthread_t	monitor;
 	pid_t		pid;
 
 	i = 0;
@@ -50,20 +69,13 @@ int	creation_philos(t_prog *prog)
 		if (pid == 0)
 		{
 			init_philo(prog, i);
-			philosopher(prog->philo);
-			// pthread_create(&monitor, NULL, /*check_death*/, &prog->philo[i]);
-			// pthread_detach(monitor); 
+			prog->philo[i].id = i;
+			philosopher(prog->philo); 
 		}
 		else
-		{
-			i++;
-			usleep(100);
-		}
-	}
-	if (prog->numberofeat >= 0)
-	{
-		pthread_create(&monitor, NULL, /*check_hunger*/, prog);
-		pthread_detach(monitor);
+			prog->id_table[i] = pid;
+		i++;
+		usleep(100);
 	}
 	return (0);
 }

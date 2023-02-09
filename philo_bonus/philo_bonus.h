@@ -6,7 +6,7 @@
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 09:55:10 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 15:56:31 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:36:30 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ typedef struct s_prog
 	int				finish;
 	int				all_ate;
 	long long		creation_time;
+	int				*id_table;
 	t_philo			*philo;
-	sem_t			*sem;
+	sem_t			*forks;
 }	t_prog;
 
 //init

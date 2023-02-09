@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prog_init.c                                        :+:      :+:    :+:   */
+/*   prog_init_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 09:54:45 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/08 13:36:52 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:34:03 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-t_prog	*prog_init(t_prog *prog, char **av, int ac)
+void	prog_init(t_prog *prog, char **av, int ac)
 {
 	prog->numberofphilos = atoi(av[1]);
 	prog->timetodie = atoi(av[2]);
@@ -25,7 +25,7 @@ t_prog	*prog_init(t_prog *prog, char **av, int ac)
 	else
 		prog->numberofeat = -1;
 	prog->philo = malloc(sizeof(t_philo) * prog->numberofphilos);
-	if (!prog->philo)
-		return (NULL);
-	return (prog);
+	prog->id_table = malloc(sizeof(int) * prog->numberofphilos);
+	if (!prog->philo || !prog->id_table)
+		ft_puterr("Allocation Error!\n");
 }
