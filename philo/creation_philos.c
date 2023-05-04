@@ -34,13 +34,22 @@ void	*check_death(void *arg)
 	{
 		if ((philo->lastmeal + philo->prog->timetodie) < get_time())
 		{
+			pthread_mutex_lock(&philo->prog->finish_lock);
 			print_msg(philo, "died");
 			philo->should_die = 1;
 			philo->prog->finish = 1;
+			
 		}
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
+}
+
+void	ft_usleep(int nb)
+{
+	time = get()
+	while (time - get() > nb)
+		usleep(100);
 }
 
 void	*philosophers(void *arg)
@@ -56,7 +65,7 @@ void	*philosophers(void *arg)
 		left_fork = (philo->id + 1) % philo->prog->numberofphilos;
 		if (philo->prog->numberofphilos == 1)
 		{
-			// usleep(100000);
+			usleep(100000);
 			break ;
 		}
 		grab_fork(philo, right_fork);

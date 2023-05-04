@@ -29,7 +29,6 @@ void	ft_putstr_fd(char *str, int fd)
 int	main(int ac, char **av)
 {
 	t_prog	*prog;
-	// pthread_mutex_t	mutex;
 
 	if (ac != 6 && ac != 5)
 	{
@@ -42,10 +41,7 @@ int	main(int ac, char **av)
 	if (!prog)
 		return (1);
 	prog_init(prog, av, ac);
-	// pthread_mutex_init(&mutex, NULL);
-	// pthread_mutex_lock(&mutex);
 	if (!mutex_init(prog) && !creation_philos(prog))
 		join_free(prog);
-	// pthread_mutex_lock(&mutex);
 	return (0);
 }

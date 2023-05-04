@@ -8,7 +8,7 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(SRCS) -lpthread
 	rm -f ${OBJS}
-clean :mk
+clean :
 	rm -f $(OBJS)
 
 fclean : clean
