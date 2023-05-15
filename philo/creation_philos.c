@@ -47,9 +47,11 @@ void	*check_death(void *arg)
 
 void	ft_usleep(int nb)
 {
-	time = get()
-	while (time - get() > nb)
-		usleep(100);
+	long long time;
+
+	time = get_time();
+	while (get_time() - time < nb)
+		usleep(100); //test
 }
 
 void	*philosophers(void *arg)
