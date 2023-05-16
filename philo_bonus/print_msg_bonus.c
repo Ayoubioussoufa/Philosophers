@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_msg_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aybiouss <aybiouss@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: aybiouss <aybiouss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 15:53:20 by aybiouss          #+#    #+#             */
-/*   Updated: 2023/02/09 13:03:30 by aybiouss         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:22:52 by aybiouss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void    print_msg(t_philo *philo, char *msg)
 void	puterr(char *err)
 {
 	write(2, err, ft_strlen(err));
-	exit(1);
+	exit(1); //SHOULDNt EXIT HERE
 }

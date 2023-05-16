@@ -44,10 +44,14 @@ typedef struct s_prog
 	long long		creation_time;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	finished;
 	pthread_mutex_t	finish_lock;
+	pthread_mutex_t	all_aate;
+	pthread_mutex_t	eat_lock;
 }	t_prog;
 
 //utils
+void	ft_usleep(int nb);
 void		ft_putstr_fd(char *str, int fd);
 void		ft_putchar_fd(char c, int fd);
 

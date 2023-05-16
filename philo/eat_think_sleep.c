@@ -15,16 +15,20 @@
 void	eating(t_philo *philo)
 {
 	print_msg(philo, "is eating");
-	usleep(philo->prog->timetoeat * 1000);
+	pthread_mutex_lock(&philo->prog->eat_lock);
 	philo->lastmeal = get_time();
+	pthread_mutex_lock(&philo->prog->all_aate);
 	philo->ate++;
 	if (philo->ate == philo->prog->numberofeat)
 		philo->prog->all_ate++;
+	pthread_mutex_unlock(&philo->prog->all_aate);
+	pthread_mutex_unlock(&philo->prog->eat_lock);
+	ft_usleep(philo->prog->timetoeat);
 }
 
 void	sleep_think(t_philo *philo)
 {
 	print_msg(philo, "is sleeping");
-	usleep(philo->prog->timetosleep * 1000);
+	ft_usleep(philo->prog->timetosleep);
 	print_msg(philo, "is thinking");
 }

@@ -32,15 +32,15 @@ void	*check_death(void *arg)
 	philo = (t_philo *)arg;
 	while (!philo->prog->finish)
 	{
+		pthread_mutex_lock(&philo->prog->eat_lock);
 		if ((philo->lastmeal + philo->prog->timetodie) < get_time())
 		{
-			pthread_mutex_lock(&philo->prog->finish_lock);
 			print_msg(philo, "died");
 			philo->should_die = 1;
 			philo->prog->finish = 1;
 			
 		}
-		usleep(1000);
+		pthread_mutex_unlock(&philo->prog->eat_lock);
 	}
 	return (NULL);
 }
@@ -51,7 +51,7 @@ void	ft_usleep(int nb)
 
 	time = get_time();
 	while (get_time() - time < nb)
-		usleep(100); //test
+		usleep(100);
 }
 
 void	*philosophers(void *arg)
@@ -66,10 +66,7 @@ void	*philosophers(void *arg)
 		right_fork = philo->id;
 		left_fork = (philo->id + 1) % philo->prog->numberofphilos;
 		if (philo->prog->numberofphilos == 1)
-		{
-			usleep(100000);
 			break ;
-		}
 		grab_fork(philo, right_fork);
 		grab_fork(philo, left_fork);
 		eating(philo);
@@ -98,7 +95,7 @@ int	creation_philos(t_prog *prog)
 		pthread_create(&monitor, NULL, check_death, &prog->philo[i]);
 		pthread_detach(monitor);
 		i++;
-		usleep(100);
+		ft_usleep(1000);
 	}
 	if (prog->numberofeat >= 0)
 	{

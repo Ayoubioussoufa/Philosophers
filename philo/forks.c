@@ -20,6 +20,9 @@ void	grab_fork(t_philo *philo, int f)
 
 void	put_forks(t_philo *philo, int f1, int f2)
 {
+	(void)f1;
+	(void)philo;
+	(void)f2;
 	pthread_mutex_unlock(&philo->prog->forks[f1]);
 	pthread_mutex_unlock(&philo->prog->forks[f2]);
 }
