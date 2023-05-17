@@ -124,10 +124,10 @@ int	creation_philos(t_prog *prog)
 			philosophers, &prog->philo[i]);
 		pthread_create(&monitor, NULL, check_death, &prog->philo[i]);
 		pthread_detach(monitor);
-		usleep(100);
+		usleep(10);
 		i++;
 	}
-	if (prog->numberofeat >= 0)
+	if (prog->numberofeat > 0)
 	{
 		pthread_create(&monitor, NULL, check_hunger, prog);
 		pthread_detach(monitor);

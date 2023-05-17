@@ -37,6 +37,10 @@ int	main(int ac, char **av)
 			"[number_of_times_eacih_philosopher_must_eat]\n");
 		return (1);
 	}
+	if (av[1][0] == '0' && av[1][1] == '\0')
+		return (0);
+	if (av[5] && av[5][0] == '0' && av[5][1] == '\0')
+		return (0);
 	prog = malloc(sizeof(t_prog));
 	if (!prog)
 		return (1);
