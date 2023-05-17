@@ -17,17 +17,22 @@ void	*check_hunger(void *arg)
 	t_prog	*prog;
 
 	prog = (t_prog *)arg;
-	while (!prog->finish)
+	while (1)
 	{
 		pthread_mutex_lock(&prog->all_aate);
-		if (prog->all_ate > 0)
+		if (prog->all_ate)
 		{
 			pthread_mutex_lock(&prog->finished);
 			prog->finish = 1;
 			pthread_mutex_unlock(&prog->finished);
 		}
 		pthread_mutex_unlock(&prog->all_aate);
+		pthread_mutex_lock(&prog->finished);
+		if (prog->finish)
+			break ;
+		pthread_mutex_unlock(&prog->finished);
 	}
+	pthread_mutex_unlock(&prog->finished);
 	return (NULL);
 }
 
@@ -38,8 +43,10 @@ void	*check_death(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
+		pthread_mutex_lock(&philo->prog->finished);
 		if (philo->prog->finish)
 			break ;
+		pthread_mutex_unlock(&philo->prog->finished);
 		pthread_mutex_lock(&philo->prog->eat_lock);
 		if ((philo->lastmeal + philo->prog->timetodie) < get_time())
 		{
