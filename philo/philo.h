@@ -53,7 +53,7 @@ typedef struct s_prog
 }	t_prog;
 
 //utils
-void	ft_usleep(int nb);
+void		ft_usleep(int nb);
 void		ft_putstr_fd(char *str, int fd);
 void		ft_putchar_fd(char c, int fd);
 
