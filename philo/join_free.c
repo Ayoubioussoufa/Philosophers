@@ -56,17 +56,17 @@ void	free_prog(t_prog *prog)
 
 void	join_free(t_prog *prog)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	while (i < prog->numberofphilos)
-	{
-		if (pthread_join(prog->philo[i++].thread, NULL) != 0)
-		{
-			ft_putstr_fd("Error Couldn't join thread\n", 2);
-			return ;
-		}
-	}
+	// i = 0;
+	// while (i < prog->numberofphilos)
+	// {
+	// 	if (pthread_join(prog->philo[i++].thread, NULL) != 0)
+	// 	{
+	// 		ft_putstr_fd("Error Couldn't join thread\n", 2);
+	// 		return ;
+	// 	}
+	// }
 	// printf("wfwefwefwef???*-***\n");
 	free(prog->philo);
 	free_prog(prog);

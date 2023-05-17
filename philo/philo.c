@@ -46,6 +46,7 @@ int	main(int ac, char **av)
 		return (1);
 	prog_init(prog, av, ac);
 	if (!mutex_init(prog) && !creation_philos(prog))
-		join_free(prog);
+		;
+		// join_free(prog);
 	return (0);
 }

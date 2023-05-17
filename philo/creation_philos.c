@@ -19,14 +19,14 @@ void	*check_hunger(void *arg)
 	prog = (t_prog *)arg;
 	while (1)
 	{
-		pthread_mutex_lock(&prog->all_aate);
+		pthread_mutex_lock(&prog->eat_lock);
 		if (prog->all_ate)
 		{
 			pthread_mutex_lock(&prog->finished);
 			prog->finish = 1;
 			pthread_mutex_unlock(&prog->finished);
 		}
-		pthread_mutex_unlock(&prog->all_aate);
+		pthread_mutex_unlock(&prog->eat_lock);
 		pthread_mutex_lock(&prog->finished);
 		if (prog->finish)
 			break ;
@@ -43,10 +43,6 @@ void	*check_death(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		pthread_mutex_lock(&philo->prog->finished);
-		if (philo->prog->finish)
-			break ;
-		pthread_mutex_unlock(&philo->prog->finished);
 		pthread_mutex_lock(&philo->prog->eat_lock);
 		if ((philo->lastmeal + philo->prog->timetodie) < get_time())
 		{
@@ -58,9 +54,16 @@ void	*check_death(void *arg)
 			philo->prog->finish = 1;
 			pthread_mutex_unlock(&philo->prog->finished);
 		}
+		pthread_mutex_lock(&philo->prog->finished);
+		if (philo->prog->finish)
+		{
+			pthread_mutex_unlock(&philo->prog->eat_lock);
+			pthread_mutex_unlock(&philo->prog->finished);
+			break ;
+		}
+		pthread_mutex_unlock(&philo->prog->finished);
 		pthread_mutex_unlock(&philo->prog->eat_lock);
 	}
-	pthread_mutex_unlock(&philo->prog->finished);
 	return (NULL);
 }
 
@@ -70,7 +73,7 @@ void	ft_usleep(int nb)
 
 	time = get_time();
 	while (get_time() - time < nb)
-		usleep(50);
+		usleep(100);
 }
 
 void	*philosophers(void *arg)
@@ -91,9 +94,9 @@ void	*philosophers(void *arg)
 		eating(philo);
 		put_forks(philo, right_fork, left_fork);
 		sleep_think(philo);
-		pthread_mutex_lock(&philo->prog->died);
 		pthread_mutex_lock(&philo->prog->finished);
 		pthread_mutex_lock(&philo->prog->all_aate);
+		pthread_mutex_lock(&philo->prog->died);
 		if ((philo->should_die && philo->prog->finish) || philo->prog->all_ate)
 			break ;
 		pthread_mutex_unlock(&philo->prog->died);
@@ -126,11 +129,21 @@ int	creation_philos(t_prog *prog)
 		pthread_detach(monitor);
 		usleep(10);
 		i++;
-	}
-	if (prog->numberofeat > 0)
+	} 
+	// if (prog->numberofeat >= 0)
+	// {
+	// 	// pthread_create(&monitor, NULL, check_hunger, prog);
+	// 	pthread_detach(monitor);
+	// }
+	i = 0;
+	check_hunger(prog);
+	while (i < prog->numberofphilos)
 	{
-		pthread_create(&monitor, NULL, check_hunger, prog);
-		pthread_detach(monitor);
+		if (pthread_detach(prog->philo[i++].thread) != 0)
+		{
+			ft_putstr_fd("Error Couldn't detach threads\n", 2);
+			return 0;
+		}
 	}
 	return (0);
 }
