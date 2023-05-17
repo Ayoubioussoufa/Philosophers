@@ -22,6 +22,26 @@ void	free_prog(t_prog *prog)
 		ft_putstr_fd("Mutex destroy failed\n", 2);
 		return ;
 	}
+	if (pthread_mutex_destroy(&prog->eat_lock) != 0)
+	{
+		ft_putstr_fd("Mutex destroy failed\n", 2);
+		return ;
+	}
+	if (pthread_mutex_destroy(&prog->all_aate) != 0)
+	{
+		ft_putstr_fd("Mutex destroy failed\n", 2);
+		return ;
+	}
+	if (pthread_mutex_destroy(&prog->finished) != 0)
+	{
+		ft_putstr_fd("Mutex destroy failed\n", 2);
+		return ;
+	}
+	if (pthread_mutex_destroy(&prog->died) != 0)
+	{
+		ft_putstr_fd("Mutex destroy failed\n", 2);
+		return ;
+	}
 	while (i < prog->numberofphilos)
 	{
 		if (pthread_mutex_destroy(&prog->forks[i++]) != 0)
@@ -47,6 +67,7 @@ void	join_free(t_prog *prog)
 			return ;
 		}
 	}
+	// printf("wfwefwefwef???*-***\n");
 	free(prog->philo);
 	free_prog(prog);
 }

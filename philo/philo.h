@@ -48,6 +48,7 @@ typedef struct s_prog
 	pthread_mutex_t	finish_lock;
 	pthread_mutex_t	all_aate;
 	pthread_mutex_t	eat_lock;
+	pthread_mutex_t	died;
 }	t_prog;
 
 //utils

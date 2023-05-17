@@ -37,6 +37,11 @@ int	mutex_init(t_prog *prog)
 		ft_putstr_fd("Mutex init failed\n", 2);
 		return (1);
 	}
+	if (pthread_mutex_init(&prog->died, NULL) != 0)
+	{
+		ft_putstr_fd("Mutex init failed\n", 2);
+		return (1);
+	}
 	while (i < prog->numberofphilos)
 	{
 		if (pthread_mutex_init(&prog->forks[i], NULL) != 0)

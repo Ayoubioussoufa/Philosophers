@@ -17,13 +17,13 @@ void	eating(t_philo *philo)
 	print_msg(philo, "is eating");
 	pthread_mutex_lock(&philo->prog->eat_lock);
 	philo->lastmeal = get_time();
+	pthread_mutex_unlock(&philo->prog->eat_lock);
 	pthread_mutex_lock(&philo->prog->all_aate);
 	philo->ate++;
 	if (philo->ate == philo->prog->numberofeat)
 		philo->prog->all_ate++;
-	pthread_mutex_unlock(&philo->prog->all_aate);
-	pthread_mutex_unlock(&philo->prog->eat_lock);
 	ft_usleep(philo->prog->timetoeat);
+	pthread_mutex_unlock(&philo->prog->all_aate);
 }
 
 void	sleep_think(t_philo *philo)
