@@ -54,26 +54,11 @@ void	*check_death(void *arg)
 			philo->prog->finish = 1;
 			pthread_mutex_unlock(&philo->prog->finished);
 		}
-		pthread_mutex_lock(&philo->prog->finished);
-		if (philo->prog->finish)
-		{
-			pthread_mutex_unlock(&philo->prog->eat_lock);
-			pthread_mutex_unlock(&philo->prog->finished);
+		if (checkings(philo))
 			break ;
-		}
-		pthread_mutex_unlock(&philo->prog->finished);
 		pthread_mutex_unlock(&philo->prog->eat_lock);
 	}
 	return (NULL);
-}
-
-void	ft_usleep(int nb)
-{
-	long long time;
-
-	time = get_time();
-	while (get_time() - time < nb)
-		usleep(100);
 }
 
 void	*philosophers(void *arg)
@@ -94,14 +79,8 @@ void	*philosophers(void *arg)
 		eating(philo);
 		put_forks(philo, right_fork, left_fork);
 		sleep_think(philo);
-		pthread_mutex_lock(&philo->prog->finished);
-		pthread_mutex_lock(&philo->prog->all_aate);
-		pthread_mutex_lock(&philo->prog->died);
-		if ((philo->should_die && philo->prog->finish) || philo->prog->all_ate)
+		if (checks_scd(philo))
 			break ;
-		pthread_mutex_unlock(&philo->prog->died);
-		pthread_mutex_unlock(&philo->prog->finished);
-		pthread_mutex_unlock(&philo->prog->all_aate);
 	}
 	pthread_mutex_unlock(&philo->prog->died);
 	pthread_mutex_unlock(&philo->prog->finished);
@@ -129,21 +108,7 @@ int	creation_philos(t_prog *prog)
 		pthread_detach(monitor);
 		usleep(10);
 		i++;
-	} 
-	// if (prog->numberofeat >= 0)
-	// {
-	// 	// pthread_create(&monitor, NULL, check_hunger, prog);
-	// 	pthread_detach(monitor);
-	// }
-	i = 0;
-	check_hunger(prog);
-	while (i < prog->numberofphilos)
-	{
-		if (pthread_detach(prog->philo[i++].thread) != 0)
-		{
-			ft_putstr_fd("Error Couldn't detach threads\n", 2);
-			return 0;
-		}
 	}
+	checks(prog);
 	return (0);
 }

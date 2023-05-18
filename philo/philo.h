@@ -70,6 +70,7 @@ int			mutex_destroy(t_prog *prog);
 //get time
 long long	get_time(void);
 long long	current_time(t_philo *philo);
+void		ft_usleep(int nb);
 
 //forks
 void		grab_fork(t_philo *philo, int f);
@@ -84,6 +85,9 @@ void		*philosophers(void *arg);
 void		*check_hunger(void *arg);
 void		*check_death(void *arg);
 void		join_free(t_prog *prog);
+int			checks_scd(t_philo *philo);
+int			checks(t_prog *prog);
+int			checkings(t_philo *philo);
 
 //msg
 void		print_msg(t_philo *philo, char *msg);

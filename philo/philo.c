@@ -47,6 +47,5 @@ int	main(int ac, char **av)
 	prog_init(prog, av, ac);
 	if (!mutex_init(prog) && !creation_philos(prog))
 		;
-	// system("leaks philo");
 	return (0);
 }
