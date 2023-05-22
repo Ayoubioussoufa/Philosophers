@@ -44,7 +44,12 @@ int	main(int ac, char **av)
 	prog = malloc(sizeof(t_prog));
 	if (!prog)
 		return (1);
-	prog_init(prog, av, ac);
+	prog = prog_init(prog, av, ac);
+	if (!prog)
+	{
+		write(2, "Error\n", 6);
+		return (1);
+	}
 	if (!mutex_init(prog) && !creation_philos(prog))
 		;
 	return (0);

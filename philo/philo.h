@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef struct timeval	t_time;
 typedef struct s_prog	t_prog;

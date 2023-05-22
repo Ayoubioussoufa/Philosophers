@@ -71,10 +71,10 @@ void	*philosophers(void *arg)
 	while (1)
 	{
 		right_fork = philo->id;
+		grab_fork(philo, right_fork);
 		left_fork = (philo->id + 1) % philo->prog->numberofphilos;
 		if (philo->prog->numberofphilos == 1)
 			break ;
-		grab_fork(philo, right_fork);
 		grab_fork(philo, left_fork);
 		eating(philo);
 		put_forks(philo, right_fork, left_fork);
