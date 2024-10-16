@@ -28,12 +28,6 @@ This project simulates the classic dining philosophers problem, featuring both a
 
 - **Mutexes**: Mutexes are used to protect shared resources (forks) from being accessed simultaneously by multiple threads. This prevents race conditions and ensures fair access to resources.
 
-### Processes & Semaphores (Bonus Part)
-
-- **Processes**: Unlike threads, processes run independently and have their own memory space. The bonus part introduces processes for philosophers, enhancing scalability and isolation.
-
-- **Semaphores**: Semaphores are used to represent the availability of resources (forks) in a synchronized manner. They allow for efficient management of shared resources across multiple processes.
-
 ### Data Races (Race Conditions) — What Are They?
 Data races are a common problem in multithreaded programming. Data races occur when multiple tasks or threads access a shared resource without sufficient protections, leading to undefined or unpredictable behavior.
 
