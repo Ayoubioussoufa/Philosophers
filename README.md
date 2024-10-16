@@ -14,7 +14,7 @@ The dining philosophers problem is a famous problem in computer science used to 
       while thinking, they are not eating nor sleeping,
       and, of course, while sleeping, they are not eating nor thinking.
       
-  ![Image Description](https://github.com/iobba/philosophers/blob/master/philo/zphilo_img.png)
+  ![Image Description](https://github.com/Ayoubioussoufa/Philosophers/blob/main/zphilo_img.png)
 
 ## Overview
 
